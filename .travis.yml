@@ -1,0 +1,30 @@
+language: node_js
+node_js:
+- stable
+sudo: false
+git:
+  depth: 1
+install:
+- npm ci
+cache:
+  directories:
+  - "$HOME/.npm"
+script:
+- npm run lint
+- npm run test
+after_success:
+- ng build --prod
+branches:
+  except:
+  - "/^v\\d+\\.\\d+\\.\\d+$/"
+deploy:
+  provider: s3
+  access_key_id: AKIAJEX5F4VH2ZOL6MPQ
+  secret_access_key:
+    secure: yzTzhYuoqS5vVvJo/5FLYmQ4FPWLuEm3qRFM3PV7tbhbXDcFKa4go9c+/41uEhlgr8EbCHrhUso4DGsl6p8wEFxFMrCMQUf16yZuc9GirUcdOvqJnoWKnMB4eRp4CY+dKjeXy0IF67mAUkBnJPg69CGzJCt4ZLmukk5lVZZ3IrtHRZKti8yJbdVGMkCREtc1bYuAXvGa95tT1otIS84Pk5YxedlABSb25D1Jt9ViZM8vGgPEczYdDeWnQGnAS+WOiLl6d2YYroRb4l+wAzk2eUgRl/GWjs+kdtEEmKdpLbohKCiyaltfPKy6+BhsUw5rW2yXU9/QbrrcIrVhECUig9kKndeHOl/QenwOeVwvDBgvhU/s7YzTHo9VctHriajQJZKeQeIBLpvAIpUkMxn6t4ZbqdQOfc2WxemJSMRWdQAAkkimDcezay91IzjF46hjt8koSlBMwxXixTBsHQwasFN55fOdMPe2Gmr/ayTypRtaKQwICeKIqdW6v6ogSWRN2VkPpOx6x45KdwhKcz4+wRf69R35lGsqFFf0pzWlXo8qo8f1fD8j/ldtFvBuuYUxFhiKrLzahmXJL6mhNrnFbJWe/RvAH/aQmxDG+odAe/0A1/Yq3wt7u1qOFUunWvWh/DbOfYhyqQgvPYPCEbkwak+/HYqr867S7vI5o6+5FIk=
+  bucket: testquiks
+  local-dir: dist/quiks
+  upload-dir: frontend
+  acl: public_read
+  on:
+    repo: dvabuzyarov/travis-integration-example
