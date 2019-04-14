@@ -26,5 +26,7 @@ deploy:
   local-dir: dist/quiks
   upload-dir: frontend
   acl: public_read
+  skip_cleanup: true
+  verbose: true
   on:
     repo: dvabuzyarov/travis-integration-example
