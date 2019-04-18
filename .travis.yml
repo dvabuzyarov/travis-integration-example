@@ -28,6 +28,6 @@ deploy:
   acl: public_read
   skip_cleanup: true
   verbose: true
-  region: eu-west-1
+  region: us-west-1
   on:
     repo: dvabuzyarov/travis-integration-example
